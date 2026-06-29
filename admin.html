@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Admin Dashboard — Summit Roofing Hawaii</title>
+<link rel="stylesheet" href="css/style.css"/><style>
+#adminLogin { min-height:100vh; display:flex; align-items:center; justify-content:center; background:var(--primary-dark); padding:20px; }
+#adminDash { display:none; }
+.dash-tabs { display:flex; gap:4px; padding:0 24px; border-bottom:2px solid var(--border); overflow-x:auto; }
+.dash-tab { padding:12px 20px; font-weight:700; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--text-muted); cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-2px; white-space:nowrap; background:none; }
+.dash-tab.active { color:var(--accent); border-bottom-color:var(--accent); }
+.tab-panel { display:none; }
+.tab-panel.active { display:block; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo-wrap">
+      <svg viewBox="0 0 44 44" fill="none" width="44" height="44"><polygon points="22,4 42,22 38,22 38,40 6,40 6,22 2,22" fill="#E67E22" opacity="0.15"/><polyline points="2,22 22,4 42,22" stroke="#E67E22" stroke-width="3" stroke-linejoin="round" fill="none"/><rect x="12" y="22" width="20" height="18" rx="1" fill="#2C3E50" stroke="#E67E22" stroke-width="1.5"/><rect x="18" y="28" width="8" height="12" rx="1" fill="#E67E22" opacity="0.6"/></svg>
+      <div class="logo-text">Summit Roofing<span>Hawaii Island · Est. 2004</span></div>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a href="gallery.html">Gallery</a><a href="blog.html">Blog</a><a href="faq.html">FAQ</a><a href="reviews.html">Reviews</a>
+      <a href="booking.html" class="btn-nav">Free Estimate</a>
+    </nav>
+    <div class="header-actions">
+      <button class="dark-toggle" id="darkToggle">🌙</button>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a href="gallery.html">Gallery</a><a href="blog.html">Blog</a><a href="faq.html">FAQ</a><a href="reviews.html">Reviews</a><a href="booking.html">Free Estimate</a>
+</nav>
+
+<div id="adminLogin">
+  <div class="login-card">
+    <h2>Admin Login</h2>
+    <p>Summit Roofing Hawaii — Staff Portal</p>
+    <form id="loginForm">
+      <div class="form-group"><label>Password</label><input type="password" id="adminPw" placeholder="Enter password" /></div>
+      <p id="loginError" style="color:#e74c3c;font-size:0.85rem;margin-bottom:12px;"></p>
+      <button type="submit" class="btn-primary" style="width:100%;">Login →</button>
+    </form>
+  </div>
+</div>
+<div id="adminDash">
+  <div class="dash-header">
+    <h1>Summit Roofing — Admin Dashboard</h1>
+    <button class="btn-outline" onclick="document.getElementById('adminDash').style.display='none';document.getElementById('adminLogin').style.display='flex';" style="color:#fff;border-color:rgba(255,255,255,0.4);font-size:0.8rem;padding:8px 16px;">Logout</button>
+  </div>
+  <div class="dash-stats">
+    <div class="dash-stat"><div class="num">14</div><div class="lbl">New Bookings</div></div>
+    <div class="dash-stat"><div class="num">6</div><div class="lbl">Jobs This Week</div></div>
+    <div class="dash-stat"><div class="num">$84k</div><div class="lbl">Month Revenue</div></div>
+    <div class="dash-stat"><div class="num">3</div><div class="lbl">Pending Estimates</div></div>
+  </div>
+  <div class="dash-tabs">
+    <button class="dash-tab active" onclick="switchTab('bookings')">Bookings</button>
+    <button class="dash-tab" onclick="switchTab('messages')">Messages</button>
+    <button class="dash-tab" onclick="switchTab('reviews')">Reviews</button>
+  </div>
+  <div class="tab-panel active" id="tab-bookings">
+    <div class="dash-section">
+      <h3>Recent Bookings</h3>
+      <div style="overflow-x:auto;"><table class="data-table">
+        <thead><tr><th>Date</th><th>Name</th><th>Service</th><th>Address</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Jul 2, 2025</td><td>Keoki Makoa</td><td>Re-Roofing</td><td>188 Lanikaula St, Hilo</td><td><span class="badge badge-yellow">Pending</span></td></tr>
+          <tr><td>Jul 3, 2025</td><td>Linda Pahoa</td><td>Roof Repair</td><td>44 Kilauea Ave, Hilo</td><td><span class="badge badge-green">Confirmed</span></td></tr>
+          <tr><td>Jul 5, 2025</td><td>Dave Chun</td><td>Inspection</td><td>999 Bayfront Dr, Hilo</td><td><span class="badge badge-blue">Completed</span></td></tr>
+          <tr><td>Jul 7, 2025</td><td>Maria Santos</td><td>Gutters</td><td>32 Reed's Island, Hilo</td><td><span class="badge badge-yellow">Pending</span></td></tr>
+          <tr><td>Jul 8, 2025</td><td>Tom Hirano</td><td>Storm Damage</td><td>71 Makuu Dr, Kea'au</td><td><span class="badge badge-green">Confirmed</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="tab-messages">
+    <div class="dash-section">
+      <h3>Contact Messages</h3>
+      <div style="overflow-x:auto;"><table class="data-table">
+        <thead><tr><th>Date</th><th>Name</th><th>Phone</th><th>Message</th></tr></thead>
+        <tbody>
+          <tr><td>Jul 1</td><td>Aiko W.</td><td>(808) 555-0201</td><td>My roof started leaking during last night's rain. Can someone come today?</td></tr>
+          <tr><td>Jul 2</td><td>Ray K.</td><td>(808) 555-0202</td><td>Getting a pre-purchase inspection on a house in Pahoa. How soon available?</td></tr>
+          <tr><td>Jul 3</td><td>Nani F.</td><td>(808) 555-0203</td><td>Interested in metal roofing for my plantation house. Need estimate.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="tab-reviews">
+    <div class="dash-section">
+      <h3>Recent Reviews</h3>
+      <div style="overflow-x:auto;"><table class="data-table">
+        <thead><tr><th>Date</th><th>Reviewer</th><th>Rating</th><th>Comment</th></tr></thead>
+        <tbody>
+          <tr><td>Jun 2025</td><td>Keoki Makoa</td><td>⭐⭐⭐⭐⭐</td><td>Incredible service after storm damage. Handled everything.</td></tr>
+          <tr><td>May 2025</td><td>Linda Pahoa</td><td>⭐⭐⭐⭐⭐</td><td>Found and fixed our leak in 30 minutes. Highly recommend.</td></tr>
+          <tr><td>Apr 2025</td><td>Dave Chun</td><td>⭐⭐⭐⭐⭐</td><td>Stunning metal roof. Crew was professional and tidy.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+</div>
+<script>
+function switchTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.dash-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <span>© 2025 Summit Roofing Hawaii. Licensed BC-23891. 188 Waianuenue Ave, Hilo, HI 96720 · (808) 555-0111</span>
+      <span>Powered by <a href="https://designholistically.com" target="_blank">Design Holistically</a></span>
+    </div>
+  </div>
+</footer>
+<button class="back-top" id="backTop">↑</button>
+<script src="js/main.js"></script>
+</body>
+</html>
